@@ -1,6 +1,6 @@
 # Aerchain RFx Intelligence — Live Demonstration Runbook
-**Document Type:** 15-Minute Live Interview Demonstration Guide (Deliverable G.1)  
-**Target Audience:** Aerchain Interviewers, Hiring Committee & Executive Evaluators  
+**Document Type:** 15-Minute Live Product Demonstration Runbook  
+**Target Audience:** Enterprise Category Buyers, Procurement Leadership & Technical Reviewers  
 **Scenario:** FMCG Corrugated Packaging Annual Contract (RFX-2026-001)  
 **Live Production URL:** [https://aerchain-dashboard.vercel.app](https://aerchain-dashboard.vercel.app)  
 **Local Fallback URL:** `http://localhost:8000`  
@@ -20,7 +20,7 @@ Before initiating the live demonstration:
    ```
    Navigate to `http://localhost:8000`.
 3. **Screen Setup:** Maximize the browser window (1080p or 1440p) so the 30×5 sticky table displays comfortably with zero horizontal scroll clipping.
-4. **Terminal / Verification Tab:** Have a second tab open to `/api/health` or terminal running `py -m pytest tests/` (40/40 tests passing) if technical interviewers request architectural validation.
+4. **Terminal / Verification Tab:** Have a second tab open to `/api/health` or terminal running `py -m pytest tests/` (65/65 tests passing) if technical reviewers request architectural validation.
 
 ---
 
@@ -144,7 +144,7 @@ Before initiating the live demonstration:
 
 ---
 
-## 4. Anticipated Interviewer Questions & Defensible Answers
+## 4. Anticipated Technical & Commercial Questions with Defensible Answers
 
 ### Q1: Why did you build a full workspace instead of a pure conversational chatbot?
 > *"Enterprise buyers do not make ₹30M+ packaging awards based on a chatbot's conversational assertion. Sourcing requires visual scanability, row-level scrutiny, and instant comparison. The chat copilot complements the visual workspace; it does not replace it."*
