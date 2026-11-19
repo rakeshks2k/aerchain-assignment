@@ -1,0 +1,225 @@
+{
+  "_purpose": "Ground truth for testing extraction accuracy. This file is NOT loaded by the application runtime. Use only for validation testing.",
+  "_generated": "2026-11-17",
+  "suppliers": {
+    "PKI": {
+      "name": "PackIndia Ltd",
+      "brc_certified": true,
+      "iso_certified": true,
+      "fsc_certified": false,
+      "total_items_quoted": 28,
+      "items_not_quoted": [
+        27,
+        30
+      ],
+      "items_on_request": [
+        18
+      ],
+      "gst_rate": 18,
+      "freight": "Included for orders above INR 50000 per delivery",
+      "payment_terms": "30 days credit",
+      "volume_discount_pct": 2.5,
+      "volume_discount_threshold": "INR 500000/month/SKU",
+      "quote_validity_days": 90,
+      "sample_prices": {
+        "item_1": {
+          "price": 20.5,
+          "unit": "per piece"
+        },
+        "item_2": {
+          "price": 32.0,
+          "unit": "per piece"
+        },
+        "item_3": {
+          "price": 58.0,
+          "unit": "per piece"
+        },
+        "item_12": {
+          "price": 12.5,
+          "unit": "per sqm"
+        },
+        "item_13": {
+          "price": 18.0,
+          "unit": "per sqm"
+        }
+      }
+    },
+    "EBS": {
+      "name": "EcoBox Solutions",
+      "brc_certified": false,
+      "brc_note": "Application submitted October 2026, expected Q1 2027. NOT currently certified.",
+      "iso_certified": true,
+      "fsc_certified": false,
+      "total_items_quoted": 30,
+      "items_not_quoted": [],
+      "gst_rate_claimed": 12,
+      "gst_note": "EBS claims 12% GST - may be incorrect. Standard rate 18% for most corrugated boxes. Requires verification.",
+      "trade_discount_pct": 8,
+      "early_payment_discount_pct": 2,
+      "freight": "Extra at actuals from Ahmedabad (~INR 2.80/kg FTL to Pune)",
+      "payment_terms": "30 days or 15 days with 2% early payment discount",
+      "quote_validity_days": 60,
+      "sample_prices_list_before_discount": {
+        "item_1": {
+          "list_price": 17.5,
+          "net_after_8pct_discount": 16.1,
+          "unit": "per piece"
+        },
+        "item_2": {
+          "list_price": 27.0,
+          "net_after_8pct_discount": 24.84,
+          "unit": "per piece"
+        },
+        "item_12": {
+          "list_price": 10.8,
+          "unit": "per sqm"
+        }
+      }
+    },
+    "IPI": {
+      "name": "IndoPack Industries",
+      "brc_certified": true,
+      "iso_certified": true,
+      "fsc_certified": true,
+      "total_items_quoted": 29,
+      "items_not_quoted": [
+        27
+      ],
+      "item_29_note": "SUBSTITUTE proposed: 5-ply wax-treated BC-flute at INR 68/pc",
+      "gst_rate": 18,
+      "freight_basis": "FOR Chennai",
+      "freight_to_pune_ftl": "INR 2.50 per kg",
+      "freight_to_pune_ltl": "INR 3.80 per kg",
+      "lead_time_days_min": 21,
+      "lead_time_days_max": 25,
+      "volume_discount_above_100k": 3.0,
+      "volume_discount_50k_to_100k": 1.5,
+      "payment_terms": "30% advance, 70% against dispatch",
+      "quote_validity_days": 90
+    },
+    "PCO": {
+      "name": "PremiumCorrugated Pvt Ltd",
+      "brc_certified": true,
+      "brc_grade": "AA",
+      "iso_certified": true,
+      "fsc_certified": true,
+      "gmp_certified": true,
+      "total_items_quoted": 30,
+      "items_not_quoted": [],
+      "gst_rate": 18,
+      "freight": "Included for Mumbai. Outstation at cost.",
+      "payment_terms": "45 days credit preferred, 30 days standard",
+      "volume_discount_tiers": [
+        {
+          "threshold_pieces_per_sku_per_year": 100000,
+          "discount_pct": 10
+        },
+        {
+          "threshold_pieces_per_sku_per_year": 50000,
+          "discount_pct": 7
+        },
+        {
+          "threshold_pieces_per_sku_per_year": 25000,
+          "discount_pct": 4
+        }
+      ],
+      "quote_validity_days": 90,
+      "sample_prices": {
+        "item_1": {
+          "price": 24.0,
+          "unit": "per piece"
+        },
+        "item_12": {
+          "price": 14.5,
+          "unit": "per sqm"
+        }
+      }
+    },
+    "RPC": {
+      "name": "RegionalPacks Co",
+      "brc_certified": false,
+      "iso_certified": true,
+      "fsc_certified": false,
+      "total_items_quoted": 17,
+      "items_quoted": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        11,
+        15,
+        17,
+        20,
+        22,
+        24,
+        28,
+        29
+      ],
+      "items_not_quoted": [
+        10,
+        12,
+        13,
+        14,
+        16,
+        18,
+        19,
+        21,
+        23,
+        25,
+        26,
+        27,
+        30
+      ],
+      "unresolved_pricing": "Line in email: 'rest same as last year, freight extra' - no historical baseline available to validate",
+      "gst_rate": 18,
+      "freight": "Extra at actuals from Hyderabad (~INR 3.20/kg LTL to Pune)",
+      "payment_terms": "Advance preferred, 15 days credit after 3 successful orders",
+      "item_29_note": "Standard 5-ply, NOT wax-treated - different spec from RFQ requirement"
+    }
+  },
+  "mandatory_qualification": {
+    "Q1_ISO_pass": [
+      "PKI",
+      "EBS",
+      "IPI",
+      "PCO",
+      "RPC"
+    ],
+    "Q2_BRC_pass": [
+      "PKI",
+      "IPI",
+      "PCO"
+    ],
+    "Q2_BRC_fail": [
+      "EBS",
+      "RPC"
+    ],
+    "Q3_full_supply_pass": [
+      "PKI",
+      "EBS",
+      "PCO"
+    ],
+    "Q3_partial_supply": [
+      "IPI",
+      "RPC"
+    ],
+    "qualified_all_mandatory": [
+      "PKI",
+      "IPI",
+      "PCO"
+    ],
+    "disqualified": [
+      "EBS",
+      "RPC"
+    ],
+    "disqualification_reasons": {
+      "EBS": "BRC certification not current (application pending Q1 2027)",
+      "RPC": "No BRC certification"
+    }
+  }
+}

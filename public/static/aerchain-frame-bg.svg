@@ -1,0 +1,37 @@
+<svg width="1440" height="1381" viewBox="0 0 1440 1381" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_7_3662)">
+<g clip-path="url(#clip1_7_3662)">
+<rect width="1440" height="1381" fill="url(#paint0_linear_7_3662)"/>
+<g opacity="0.2" filter="url(#filter0_b_7_3662)">
+<path d="M0.370224 136.753L-59.8921 7.25308C-94.4412 -66.9906 -40.237 -152 41.6517 -152H1381.5C1443.36 -152 1493.5 -101.856 1493.5 -40V186.205C1493.5 214.961 1482.44 242.615 1462.61 263.44L1388.83 340.916C1356 375.402 1304.94 385.352 1261.56 365.722L1136.16 308.986C1116.01 299.867 1093.6 296.92 1071.77 300.518L772.236 349.895C737.463 355.627 702.02 344.657 676.564 320.285L584.984 232.602C564.137 212.642 536.389 201.5 507.528 201.5H101.914C58.3554 201.5 18.7477 176.245 0.370224 136.753Z" fill="#803AFF"/>
+</g>
+<g opacity="0.1" filter="url(#filter1_b_7_3662)">
+<path d="M53.8723 81.5636L-174 -208H1453.5V3.03049C1453.5 67.6846 1412.6 125.263 1351.55 146.553L946.561 287.79C892.533 306.631 832.502 293.535 791.23 253.904L611.852 81.6554C570.276 41.732 509.696 28.7603 455.418 48.1591L224.476 130.697C162.959 152.683 94.2728 132.902 53.8723 81.5636Z" fill="#A879FF"/>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_b_7_3662" x="-74.4814" y="-156" width="1571.98" height="535.685" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feGaussianBlur in="BackgroundImageFix" stdDeviation="2"/>
+<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_7_3662"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_7_3662" result="shape"/>
+</filter>
+<filter id="filter1_b_7_3662" x="-178" y="-212" width="1635.5" height="512.27" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feGaussianBlur in="BackgroundImageFix" stdDeviation="2"/>
+<feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_7_3662"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur_7_3662" result="shape"/>
+</filter>
+<linearGradient id="paint0_linear_7_3662" x1="720" y1="0" x2="720" y2="2110" gradientUnits="userSpaceOnUse">
+<stop stop-color="#200061"/>
+<stop offset="1"/>
+</linearGradient>
+<clipPath id="clip0_7_3662">
+<rect width="1440" height="1381" fill="white"/>
+</clipPath>
+<clipPath id="clip1_7_3662">
+<rect width="1440" height="1381" fill="white"/>
+</clipPath>
+</defs>
+</svg>

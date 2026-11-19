@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aerchain - Autonomous Sourcing &amp; RFx Intelligence</title>
+  <link rel="icon" type="image/svg+xml" href="/static/aerchain-icon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css?v=20261119d" />
+</head>
+<body>
+<div id="app">
+
+  <!-- ── Central Floating Application Canvas (Reference UI Structure) ── -->
+  <div id="app-shell">
+
+    <!-- ── Left Workspace Sidebar ── -->
+    <aside id="sidebar">
+      <div class="sidebar-brand" onclick="App.navigateTo('dashboard')" style="cursor: pointer;" title="Go to Overview">
+        <img src="/static/aerchain-logo.png" alt="Aerchain" class="aerchain-sidebar-logo" />
+      </div>
+
+      <div class="sidebar-section-label">WORKSPACE</div>
+
+      <nav class="sidebar-nav">
+        <button class="nav-item active" data-section="dashboard">
+          <div class="nav-item-left">
+            <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg>
+            <span>Overview</span>
+          </div>
+        </button>
+
+        <button class="nav-item" data-section="rfx">
+          <div class="nav-item-left">
+            <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/></svg>
+            <span>RFx Events</span>
+          </div>
+          <span class="nav-count-badge">1</span>
+        </button>
+
+        <button class="nav-item" data-section="submissions">
+          <div class="nav-item-left">
+            <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+            <span>Submissions</span>
+          </div>
+          <span class="nav-count-badge">5</span>
+        </button>
+
+        <button class="nav-item" data-section="comparison">
+          <div class="nav-item-left">
+            <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="M15 3v18"/><path d="M3 9h18"/><path d="M3 15h18"/></svg>
+            <span>Comparison</span>
+          </div>
+          <span class="nav-count-badge">30</span>
+        </button>
+
+        <button class="nav-item" data-section="analyst">
+          <div class="nav-item-left">
+            <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg>
+            <span>Analyst Copilot</span>
+          </div>
+        </button>
+
+        <button class="nav-item" data-section="award">
+          <div class="nav-item-left">
+            <svg class="nav-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+            <span>Award &amp; Export</span>
+          </div>
+        </button>
+      </nav>
+
+
+
+      <!-- User Footer Profile -->
+      <div class="sidebar-user-footer">
+        <div class="sidebar-user-left">
+          <div class="user-avatar-sm">PK</div>
+          <div class="user-name-role">
+            <span class="user-name">Priya K.</span>
+            <span class="user-role">Packaging Lead</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ── Right Main Workspace Viewport ── -->
+    <main id="main-viewport">
+
+      <!-- ═══════ SCREEN A: OVERVIEW / DASHBOARD ═══════ -->
+      <section id="section-dashboard" class="section active">
+        <!-- Topbar -->
+        <div class="workspace-topbar">
+          <div class="topbar-title-block">
+            <h1 class="page-title">Sourcing Intelligence</h1>
+            <span class="page-subtitle">RFX-2026-001 - FMCG Corrugated Packaging FY 2026-27</span>
+          </div>
+          <div class="topbar-right-controls">
+            <div class="search-pill" onclick="App.showSearchModal()" title="Search SKUs, specs, suppliers...">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+              <span>Search SKUs, specs, vendors...</span>
+              <span class="kbd-shortcut">Ctrl K</span>
+            </div>
+            <button type="button" class="btn-capsule-dark" onclick="App.exportCSV(event)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+              Export CSV
+            </button>
+          </div>
+        </div>
+
+        <!-- KPI Metrics Strip (5 Compact Cards across the top - from Sample UI) -->
+        <div class="kpi-metrics-strip">
+          <!-- Card 1: Portfolio Spend -->
+          <div class="kpi-card">
+            <div class="kpi-card-top">
+              <span class="kpi-title">Portfolio Spend</span>
+              <svg class="kpi-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <div class="kpi-card-bottom">
+              <span class="kpi-metric-val" id="kpi-spend-val">₹2,66,61,540</span>
+              <span class="kpi-trend-pill trend-green">+14.5%</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Target Savings -->
+          <div class="kpi-card">
+            <div class="kpi-card-top">
+              <span class="kpi-title">Target Savings</span>
+              <svg class="kpi-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20"/><path d="m17 5-5-3-5 3"/><path d="m17 19-5 3-5-3"/><path d="M2 12h20"/></svg>
+            </div>
+            <div class="kpi-card-bottom">
+              <span class="kpi-metric-val" id="kpi-savings-val">₹45,05,550</span>
+              <span class="kpi-trend-pill trend-green">14.5%</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Lead Supplier (Highlighted Soft Lavender) -->
+          <div class="kpi-card highlight-lavender">
+            <div class="kpi-card-top">
+              <span class="kpi-title">Lead Supplier</span>
+              <svg class="kpi-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            </div>
+            <div class="kpi-card-bottom">
+              <span class="kpi-metric-val" style="font-size:18px;">PackIndia</span>
+              <span class="kpi-trend-pill trend-purple">32% Share</span>
+            </div>
+          </div>
+
+          <!-- Card 4: SKU Coverage -->
+          <div class="kpi-card">
+            <div class="kpi-card-top">
+              <span class="kpi-title">SKU Coverage</span>
+              <svg class="kpi-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 12 2 2 4-4"/></svg>
+            </div>
+            <div class="kpi-card-bottom">
+              <span class="kpi-metric-val">30 / 30</span>
+              <span class="kpi-trend-pill trend-green">100%</span>
+            </div>
+          </div>
+
+          <!-- Card 5: BRC Quality Rate (Highlighted Soft Lime) -->
+          <div class="kpi-card highlight-lime">
+            <div class="kpi-card-top">
+              <span class="kpi-title">BRC Quality Rate</span>
+              <svg class="kpi-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="kpi-card-bottom">
+              <span class="kpi-metric-val">3 / 5</span>
+              <span class="kpi-trend-pill trend-green">60% Qualified</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Middle Row: 2 Balanced Modular Cards (Sample UI) -->
+        <div class="grid-two-col">
+          <!-- Card 1: Spend by Packaging Category -->
+          <div class="modular-card">
+            <div class="modular-card-header">
+              <div class="card-title-group">
+                <span class="card-main-title">Spend by packaging category</span>
+                <span class="card-sub-title">Heavy duty cartons drive 45% of annual volume</span>
+              </div>
+              <span class="badge badge-blue">4 Categories</span>
+            </div>
+
+            <div class="category-progress-list">
+              <div class="category-row">
+                <div class="category-row-left">
+                  <span class="category-name">Heavy Duty</span>
+                </div>
+                <div class="category-bar-track">
+                  <div class="category-bar-fill" style="width:45%; background:var(--aer-violet);"></div>
+                </div>
+                <div class="category-row-right">
+                  <span class="category-amount">₹1.20 Cr</span>
+                  <span class="category-growth growth-purple">45%</span>
+                </div>
+              </div>
+
+              <div class="category-row">
+                <div class="category-row-left">
+                  <span class="category-name">Standard RSC</span>
+                </div>
+                <div class="category-bar-track">
+                  <div class="category-bar-fill" style="width:35%; background:var(--aer-purple);"></div>
+                </div>
+                <div class="category-row-right">
+                  <span class="category-amount">₹93.3 L</span>
+                  <span class="category-growth growth-green">35%</span>
+                </div>
+              </div>
+
+              <div class="category-row">
+                <div class="category-row-left">
+                  <span class="category-name">Die-Cut Trays</span>
+                </div>
+                <div class="category-bar-track">
+                  <div class="category-bar-fill" style="width:15%; background:var(--aer-coral);"></div>
+                </div>
+                <div class="category-row-right">
+                  <span class="category-amount">₹40.0 L</span>
+                  <span class="category-growth growth-green">15%</span>
+                </div>
+              </div>
+
+              <div class="category-row">
+                <div class="category-row-left">
+                  <span class="category-name">Buffer &amp; Custom</span>
+                </div>
+                <div class="category-bar-track">
+                  <div class="category-bar-fill" style="width:5%; background:#D1D5DB;"></div>
+                </div>
+                <div class="category-row-right">
+                  <span class="category-amount">₹13.3 L</span>
+                  <span class="category-growth growth-purple">5%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Supplier Share & Allocation (Dynamic from DB) -->
+          <div class="modular-card">
+            <div class="modular-card-header">
+              <div class="card-title-group">
+                <span class="card-main-title">Supplier share &amp; allocation</span>
+                <span class="card-sub-title">Contracted allocation vs capacity · FY 2026-27</span>
+              </div>
+              <span class="badge badge-purple" id="dash-target-badge">Target: ₹2.66 Cr</span>
+            </div>
+
+            <div class="provider-list" id="dash-supplier-progress">
+              <div class="loading-state"><span class="spinner spinner-sm"></span> Loading vendor shares...</div>
+            </div>
+
+            <div class="card-insight-pill" id="dash-insight-pill">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg>
+              Split award across qualified vendors maximizes net savings while maintaining BRC compliance.
+            </div>
+          </div>
+        </div>
+
+        <!-- Active RFx Events Quick Summary -->
+        <div class="table-card mt-32">
+          <div class="section-heading-row">
+            <div class="section-heading-text">
+              <h3 class="section-heading-title">Active Sourcing Rounds</h3>
+              <p class="section-heading-desc">Active procurement events and submission progress</p>
+            </div>
+            <button class="btn-capsule-secondary" onclick="App.navigateTo('rfx')">Manage Events</button>
+          </div>
+          <div class="table-wrap" id="dash-rfx-table">
+            <div class="loading-state"><span class="spinner"></span> Loading events...</div>
+          </div>
+        </div>
+
+        <!-- Live Audit Activity Strip -->
+        <div class="table-card mt-32">
+          <div class="section-heading-row">
+            <div class="section-heading-text">
+              <h3 class="section-heading-title">Audit Ledger &amp; Event Stream</h3>
+              <p class="section-heading-desc">Verification trail of extractions, buyer overrides, and allocations</p>
+            </div>
+            <button class="btn-capsule-secondary" onclick="App.navigateTo('analyst')">Ask Copilot</button>
+          </div>
+          <div id="dash-recent-activity" class="activity-feed">
+            <div class="loading-state"><span class="spinner spinner-sm"></span> Loading activity ledger...</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════ SCREEN B: RFX EVENTS & LINE ITEMS ═══════ -->
+      <section id="section-rfx" class="section">
+        <div class="workspace-topbar">
+          <div class="topbar-title-block">
+            <h1 class="page-title">RFx Events</h1>
+            <span class="page-subtitle">Manage specifications, questionnaires, and supplier invitations</span>
+          </div>
+          <button class="btn-capsule-dark" onclick="App.showNewRfxModal()">+ Create New RFx</button>
+        </div>
+
+        <div id="rfx-list-view">
+          <div class="table-card">
+            <div class="table-wrap" id="rfx-list-table">
+              <div class="loading-state"><span class="spinner"></span> Loading events...</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="rfx-detail-view" style="display:none">
+          <div class="rfx-header-bar">
+            <div class="rfx-header-left">
+              <button class="btn-capsule-secondary" style="height:36px; padding:0 16px; font-size:12.5px;" onclick="App.showRfxList()">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                Back to Events
+              </button>
+              <div class="rfx-header-divider"></div>
+              <span id="rfx-detail-title" class="rfx-header-title"></span>
+            </div>
+            <button class="btn-capsule-secondary" style="height:36px; padding:0 18px; font-size:12.5px;" onclick="App.navigateTo('submissions')">View Submissions</button>
+          </div>
+
+          <div id="rfx-detail-meta" class="table-card mb-24"></div>
+
+          <div class="subnav-filter-strip" style="margin-bottom: 24px;">
+            <div class="filter-pill-group">
+              <button class="filter-pill active" id="tab-btn-line-items" onclick="App.switchRfxTab(this,'tab-line-items')">Line Items (30)</button>
+              <button class="filter-pill" id="tab-btn-questionnaire" onclick="App.switchRfxTab(this,'tab-questionnaire')">Questionnaire</button>
+              <button class="filter-pill" id="tab-btn-invitations" onclick="App.switchRfxTab(this,'tab-invitations')">Supplier Invitations (5)</button>
+            </div>
+          </div>
+
+          <div id="tab-line-items">
+            <div class="table-card">
+              <div class="section-heading-row">
+                <div class="flex-gap-12 align-center" style="flex-wrap: wrap;">
+                  <div class="table-search-box">
+                    <svg class="table-search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="11" cy="11" r="8"></circle>
+                      <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="text" id="line-item-search" class="table-search-input" placeholder="Search SKU, ply, flute..." onkeyup="App.filterLineItems(this.value)">
+                  </div>
+                  <div class="sku-count-pill" id="sku-count-display">
+                    <span class="sku-count-num" id="sku-count-num">30</span>
+                    <span class="sku-count-lbl">Specifications</span>
+                  </div>
+                  <button type="button" id="btn-batch-delete" class="btn-capsule-danger" style="display: none;" onclick="App.deleteSelectedLineItems()">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M10 11v6M14 11v6"/>
+                    </svg>
+                    <span>Delete Selected (<span id="selected-items-count">0</span>)</span>
+                  </button>
+                </div>
+                <button type="button" class="btn-capsule-dark" onclick="App.showAddLineItemModal()">+ Add Line Item</button>
+              </div>
+              <div class="table-wrap" id="rfx-items-table">
+                <div class="loading-state"><span class="spinner"></span> Loading items...</div>
+              </div>
+            </div>
+          </div>
+
+          <div id="tab-questionnaire" style="display:none">
+            <div class="table-card">
+              <div class="section-heading-row">
+                <div class="section-heading-text">
+                  <h4 class="section-heading-title">Supplier Evaluation Questionnaire</h4>
+                  <p class="section-heading-desc">Mandatory compliance requirements, certifications, and technical questions</p>
+                </div>
+              </div>
+              <div class="table-wrap" id="rfx-q-table">
+                <div class="loading-state"><span class="spinner"></span></div>
+              </div>
+            </div>
+          </div>
+
+          <div id="tab-invitations" style="display:none">
+            <div class="table-card">
+              <div class="section-heading-row">
+                <div class="section-heading-text">
+                  <h4 class="section-heading-title">Invited Packaging Suppliers</h4>
+                  <p class="section-heading-desc">Verified corrugated manufacturers invited to participate</p>
+                </div>
+                <button type="button" class="btn-capsule-dark" style="display:inline-flex; align-items:center; gap:6px;" onclick="App.sendInvitations()">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                  <span>Send Invitations</span>
+                </button>
+              </div>
+              <div class="table-wrap" id="rfx-inv-table">
+                <div class="loading-state"><span class="spinner"></span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════ SCREEN C: SUPPLIER SUBMISSIONS ═══════ -->
+      <section id="section-submissions" class="section">
+        <div id="submissions-list-view">
+          <div class="workspace-topbar">
+            <div class="topbar-title-block">
+              <h1 class="page-title">Supplier Submissions</h1>
+              <span class="page-subtitle">Multi-format quotation files received and OCR extraction confidence</span>
+            </div>
+            <div class="topbar-right-controls">
+              <button class="btn-capsule-secondary" onclick="App.reextractAll()">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"/></svg>
+                Re-extract All
+              </button>
+              <button class="btn-capsule-dark" onclick="App.navigateTo('comparison')">
+                Open Comparison Matrix
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- 4-Card Submission Metric Strip -->
+          <div class="kpi-metrics-strip" style="grid-template-columns: repeat(4, 1fr); margin-bottom:18px;">
+            <div class="kpi-card" style="min-height:86px; padding:14px 16px;">
+              <span class="kpi-title">Submissions Received</span>
+              <div class="kpi-card-bottom"><span class="kpi-metric-val">5 of 5</span><span class="badge badge-green">100% Rate</span></div>
+            </div>
+            <div class="kpi-card" style="min-height:86px; padding:14px 16px;">
+              <span class="kpi-title">Quotes Normalized</span>
+              <div class="kpi-card-bottom"><span class="kpi-metric-val">147 SKUs</span><span class="badge badge-blue">Multi-format</span></div>
+            </div>
+            <div class="kpi-card highlight-lavender" style="min-height:86px; padding:14px 16px;">
+              <span class="kpi-title">Average Confidence</span>
+              <div class="kpi-card-bottom"><span class="kpi-metric-val">94.2%</span><span class="badge badge-purple">High Accuracy</span></div>
+            </div>
+            <div class="kpi-card highlight-lime" style="min-height:86px; padding:14px 16px;">
+              <span class="kpi-title">BRC Certified</span>
+              <div class="kpi-card-bottom"><span class="kpi-metric-val">3 Vendors</span><span class="badge badge-green">Food-Grade</span></div>
+            </div>
+          </div>
+
+          <div id="submissions-container">
+            <div class="loading-state"><span class="spinner"></span> Loading supplier submissions...</div>
+          </div>
+        </div>
+
+        <div id="submissions-detail-view" style="display: none;"></div>
+      </section>
+
+      <!-- ═══════ SCREEN D: COMPARISON WORKSPACE ═══════ -->
+      <section id="section-comparison" class="section">
+        <div class="workspace-topbar">
+          <div class="topbar-title-block">
+            <h1 class="page-title">Comparison Workspace</h1>
+            <span class="page-subtitle">30-item line item pricing matrix normalized to delivered landed cost</span>
+          </div>
+          <div class="topbar-right-controls">
+            <button type="button" class="btn-capsule-secondary" onclick="App.exportCSV(event)">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+              Export CSV
+            </button>
+            <button class="btn-capsule-dark" onclick="App.navigateTo('award')">
+              Model Award Scenarios
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Subnav & Filters -->
+        <div class="subnav-filter-strip">
+          <div class="filter-pill-group">
+            <button class="filter-pill active" data-category="all" onclick="App.filterComparisonCategory('all')">All Items (30)</button>
+            <button class="filter-pill" data-category="heavy" onclick="App.filterComparisonCategory('heavy')">Heavy Duty (12)</button>
+            <button class="filter-pill" data-category="standard" onclick="App.filterComparisonCategory('standard')">Standard (13)</button>
+            <button class="filter-pill" data-category="diecut" onclick="App.filterComparisonCategory('diecut')">Die-Cut (5)</button>
+          </div>
+          <div class="dropdown-pill-group">
+            <label class="dropdown-pill" style="cursor:pointer; user-select:none;">
+              <input type="checkbox" id="brc-toggle" onchange="App.toggleBrcFilter(this.checked)" style="cursor:pointer; accent-color:var(--aer-violet);" />
+              <span style="font-size:12.5px; font-weight:600;">BRC Food-Grade Only</span>
+            </label>
+          </div>
+        </div>
+
+        <div id="supplier-header-cards"></div>
+
+        <div id="comparison-loading" class="loading-state" style="display:none"><span class="spinner"></span> Loading comparison data...</div>
+        <div id="comparison-empty" class="empty-state" style="display:none">
+          <h4>No Comparison Data</h4>
+          <p>Extract quotes from supplier submissions first.</p>
+          <button class="btn-capsule-dark mt-8" onclick="App.navigateTo('submissions')">Go to Submissions</button>
+        </div>
+
+        <div id="comparison-content">
+          <div class="table-card">
+            <div class="table-wrap">
+              <table class="comp-matrix-table" id="comparison-table">
+                <thead id="comparison-thead"></thead>
+                <tbody id="comparison-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide-out Drawer for Quote Detail -->
+        <div class="quote-detail-drawer" id="cell-detail-panel">
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; padding-bottom: 18px; border-bottom: 1px solid var(--border-light); margin-bottom: 22px;">
+            <div id="cell-detail-title">Quote Audit Breakdown</div>
+            <button class="circle-icon-btn" style="width: 32px; height: 32px; font-size: 20px; line-height: 1; border-radius: 50%; background: var(--surface-subtle); border: 1px solid var(--border-light); color: var(--text-main); display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0;" onclick="App.closeCellDetail()" title="Close">&times;</button>
+          </div>
+          <div id="cell-detail-content"></div>
+        </div>
+      </section>
+
+      <!-- ═══════ SCREEN E: PROCUREMENT ANALYST COPILOT (CHATGPT STYLE) ═══════ -->
+      <section id="section-analyst" class="section">
+        <!-- Copilot Top Navigation Bar with Back Button -->
+        <div class="copilot-top-bar">
+          <div class="copilot-top-left">
+            <span class="copilot-main-title">Procurement Copilot</span>
+          </div>
+          <div class="copilot-top-right">
+            <button class="btn-capsule-secondary" onclick="App.resetCopilotChat()" style="height: 32px; font-size: 12.5px;">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+              New Chat
+            </button>
+            <button class="btn-capsule-secondary" id="copilot-toggle-history-btn" onclick="App.toggleChatHistorySidebar()" title="Toggle Chat History" style="height: 32px; font-size: 12.5px;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+              Chat History
+            </button>
+          </div>
+        </div>
+
+        <!-- Copilot Workspace Body: History Sidebar + Chat Canvas -->
+        <div class="copilot-workspace-body">
+          <!-- Chat History Sidebar -->
+          <aside class="copilot-history-sidebar" id="copilot-history-sidebar">
+            <div class="copilot-history-header">
+              <span class="copilot-history-label">Chat History</span>
+              <button class="copilot-new-chat-icon" onclick="App.resetCopilotChat()" title="Start New Chat">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+              </button>
+            </div>
+            <div class="copilot-history-list" id="copilot-history-list">
+              <!-- Dynamically populated by App.initCopilotHistory() -->
+            </div>
+          </aside>
+
+          <!-- Chat Canvas Container -->
+          <div class="chatgpt-main-canvas">
+            <div class="chatgpt-scroll-area" id="copilot-scroll-area">
+              <div class="chatgpt-feed" id="chat-history">
+                <!-- Empty State / Welcome Screen -->
+                <div class="chatgpt-welcome" id="chat-empty-state">
+                  <div class="chatgpt-avatar-circle">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/>
+                    </svg>
+                  </div>
+                  <h2 class="chatgpt-headline">Ask Aerchain Procurement Copilot</h2>
+                  <p class="chatgpt-subheadline">Interrogate the 5 supplier responses across all 30 line items in plain English.</p>
+
+                  <div class="chatgpt-suggestions-block">
+                    <div class="chatgpt-suggestions-title">Try the sample prompts below or ask scenario calculations:</div>
+                    <div class="chatgpt-prompt-grid">
+                      <div class="chatgpt-prompt-card" onclick="App.submitQuestion('Cheapest supplier per line item (BRC qualified only)')">
+                        <div class="chatgpt-card-title">Cheapest supplier per line item (BRC qualified only)</div>
+                        <div class="chatgpt-card-sub">Find lowest landed cost with food safety qualification</div>
+                      </div>
+                      <div class="chatgpt-prompt-card" onclick="App.submitQuestion('Single supplier vs split award financial comparison')">
+                        <div class="chatgpt-card-title">Single supplier vs split award financial comparison</div>
+                        <div class="chatgpt-card-sub">Simulate cost differences and volume discounts</div>
+                      </div>
+                      <div class="chatgpt-prompt-card" onclick="App.submitQuestion('Suppliers with greatest price spread across items')">
+                        <div class="chatgpt-card-title">Suppliers with greatest price spread across items</div>
+                        <div class="chatgpt-card-sub">Highlight pricing anomalies and variance across vendors</div>
+                      </div>
+                      <div class="chatgpt-prompt-card" onclick="App.submitQuestion('Quotes requiring manual review or verification')">
+                        <div class="chatgpt-card-title">Quotes requiring manual review or verification</div>
+                        <div class="chatgpt-card-sub">Audit missing values, footnotes, and extraction exceptions</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bottom Pinned Composer Bar -->
+            <div class="chatgpt-bottom-wrap">
+              <div class="chatgpt-composer-box">
+                <textarea id="analyst-input" rows="1" placeholder="Ask about landed costs, price spreads, compliance, or split awards..." onkeydown="App.analystKeydown(event)"></textarea>
+                <button class="chatgpt-send-btn" id="analyst-send-btn" onclick="App.submitAnalystQuery()" title="Send Query">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="19" x2="12" y2="5"></line>
+                    <polyline points="5 12 12 5 19 12"></polyline>
+                  </svg>
+                </button>
+              </div>
+              <div class="chatgpt-disclaimer">
+                Aerchain Copilot can make mistakes. Verify important financial calculations and contract terms.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══════ SCREEN F: AWARD RECOMMENDATION & EXPORT ═══════ -->
+      <section id="section-award" class="section">
+        <div class="workspace-topbar">
+          <div class="topbar-title-block">
+            <h1 class="page-title">Award Recommendation</h1>
+            <span class="page-subtitle">Optimal split-award allocation modeling, quality compliance, and risk registry</span>
+          </div>
+          <div class="topbar-right-controls">
+            <button type="button" class="btn-capsule-secondary" onclick="App.exportCSV(event)">Export CSV</button>
+            <button class="btn-capsule-secondary" onclick="App.downloadAwardSummary()">Download Summary</button>
+            <button class="btn-capsule-dark" id="btn-approve-award" onclick="App.approveAward()">Approve Award</button>
+          </div>
+        </div>
+
+        <div id="award-loading" class="loading-state" style="display:none"><span class="spinner"></span> Modeling award scenarios...</div>
+
+        <div id="award-content">
+          <!-- 2 Decision Cards Row -->
+          <div class="award-grid-two" id="award-cards"></div>
+
+          <!-- Quality Matrix & Risk Cards Container -->
+          <div id="award-tables-container" class="mt-20"></div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<!-- ── Toast & Modal Containers ── -->
+<div id="toast-container"></div>
+<div id="modal-container"></div>
+
+<!-- Chart.js & App Script -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<script src="/static/app.js?v=20261119e"></script>
+</body>
+</html>

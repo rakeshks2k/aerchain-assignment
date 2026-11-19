@@ -1,0 +1,14 @@
+screenshots/
+__pycache__/
+*.pyc
+*.pyo
+.git/
+.env
+*.log
+.system_generated/
+scratch/
+cdp_prof/
+chrome-profile/
+backend/__pycache__/
+tests/
+.pytest_cache/
